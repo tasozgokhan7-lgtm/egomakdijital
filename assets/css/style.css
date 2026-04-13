@@ -103,6 +103,12 @@ body {
   text-decoration: none; color: var(--secondary); font-size: 1.1rem; font-weight: 600;
 }
 .nav__logo strong { color: var(--primary); }
+.nav__logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 .logo-icon {
   width: 36px; height: 36px; border-radius: 8px;
   background: linear-gradient(135deg, var(--primary), #7c3aed);
