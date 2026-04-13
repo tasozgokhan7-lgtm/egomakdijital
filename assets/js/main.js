@@ -68,15 +68,20 @@ const observer = new IntersectionObserver(entries => {
 
 fadeEls.forEach(el => observer.observe(el));
 
-// Contact form — mailto fallback
+// Contact form — Formspree
 const form = document.getElementById('contactForm');
 if (form) {
-  form.addEventListener('submit', e => {
+  // _replyto alanını email ile senkronize et
+  const emailInput = document.getElementById('email');
+  const replyto    = document.getElementById('replyto');
+  if (emailInput && replyto) {
+    emailInput.addEventListener('input', () => { replyto.value = emailInput.value; });
+  }
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const name    = document.getElementById('name').value.trim();
     const email   = document.getElementById('email').value.trim();
-    const phone   = document.getElementById('phone').value.trim();
-    const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value.trim();
 
     if (!name || !email || !message) {
@@ -84,16 +89,35 @@ if (form) {
       return;
     }
 
-    const subjectMap = {
-      kurumsal: 'Kurumsal Web Sitesi Talebi',
-      eticaret: 'E-Ticaret Sitesi Talebi',
-      seo: 'SEO Hizmeti Talebi',
-      mobil: 'Mobil Uygulama Talebi',
-      diger: 'Genel Talep'
-    };
-    const mailSubject = subjectMap[subject] || 'Web Sitesi Talebi';
-    const body = `Ad Soyad: ${name}\nE-Posta: ${email}\nTelefon: ${phone || 'Belirtilmedi'}\n\nMesaj:\n${message}`;
-    window.location.href = `mailto:egomak2025@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(body)}`;
+    const btn  = document.getElementById('submitBtn');
+    const note = document.getElementById('formNote');
+    const success = document.getElementById('formSuccess');
+
+    btn.disabled = true;
+    btn.textContent = 'Gönderiliyor...';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        btn.style.display = 'none';
+        note.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Mesaj Gönder';
+        alert('Bir hata oluştu. Lütfen doğrudan egomak2025@gmail.com adresine yazın.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Mesaj Gönder';
+      alert('Bağlantı hatası. Lütfen tekrar deneyin.');
+    }
   });
 }
 
