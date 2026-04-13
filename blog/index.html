@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Egomak Dijital — Web Tasarım & SEO İpuçları</title>
+  <meta name="description" content="Web tasarım, SEO, e-ticaret ve dijital pazarlama hakkında faydalı içerikler. Egomak Dijital blogu ile dijital dünyada öne geçin." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.egomakdijital.com/blog/" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .blog-hero { background: var(--secondary); padding: 140px 0 80px; text-align: center; }
+    .blog-hero h1 { color: #fff; font-size: clamp(2rem,5vw,3rem); font-weight: 800; margin-bottom: 16px; }
+    .blog-hero p { color: #94a3b8; font-size: 1.1rem; max-width: 550px; margin: 0 auto; }
+    .blog-main { padding: 80px 0; }
+    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+    .blog-post-list { display: flex; flex-direction: column; gap: 32px; }
+    .blog-post-item {
+      display: grid; grid-template-columns: 200px 1fr; gap: 24px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow); transition: var(--transition);
+    }
+    .blog-post-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .blog-post-item__img {
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.7); min-height: 160px;
+    }
+    .blog-post-item__body { padding: 24px 24px 24px 0; }
+    .blog-post-item__body .blog-card__cat { margin-bottom: 10px; }
+    .blog-post-item__body h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .blog-post-item__body h2 a { text-decoration: none; color: var(--secondary); transition: var(--transition); }
+    .blog-post-item__body h2 a:hover { color: var(--primary); }
+    .blog-post-item__body p { font-size: .9rem; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; }
+    .blog-post-item__meta { display: flex; gap: 12px; font-size: .8rem; color: #94a3b8; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 28px; }
+    .sidebar-widget { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+    .sidebar-widget h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--secondary); padding-bottom: 12px; border-bottom: 2px solid var(--primary); display: inline-block; }
+    .sidebar-cats { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-cats li a {
+      display: flex; justify-content: space-between;
+      text-decoration: none; color: var(--text-light); font-size: .9rem;
+      padding: 6px 0; border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .sidebar-cats li a:hover { color: var(--primary); }
+    .sidebar-cats li a span { background: #dbeafe; color: var(--primary); border-radius: 100px; padding: 1px 8px; font-size: .75rem; font-weight: 600; }
+    .sidebar-recent { display: flex; flex-direction: column; gap: 14px; }
+    .sidebar-recent-item { display: flex; gap: 12px; align-items: flex-start; }
+    .sidebar-recent-img { width: 56px; height: 56px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .sidebar-recent-item h4 { font-size: .85rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+    .sidebar-recent-item h4 a { text-decoration: none; color: var(--secondary); transition: var(--transition); }
+    .sidebar-recent-item h4 a:hover { color: var(--primary); }
+    .sidebar-recent-item span { font-size: .78rem; color: #94a3b8; }
+    .sidebar-newsletter input { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: .9rem; margin-bottom: 10px; outline: none; transition: var(--transition); }
+    .sidebar-newsletter input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+    .sidebar-newsletter .btn { width: 100%; justify-content: center; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+      .blog-post-item { grid-template-columns: 1fr; }
+      .blog-post-item__img { min-height: 140px; }
+      .blog-post-item__body { padding: 0 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">
+        <span class="logo-icon">E</span>
+        <span>Egomak <strong>Dijital</strong></span>
+      </a>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="/#hizmetler" class="nav__link">Hizmetler</a></li>
+        <li><a href="/#portfolyo" class="nav__link">Portfolyo</a></li>
+        <li><a href="/#hakkimizda" class="nav__link">Hakkımızda</a></li>
+        <li><a href="/blog/" class="nav__link" style="color:var(--primary)">Blog</a></li>
+        <li><a href="/#iletisim" class="nav__link nav__link--cta">İletişim</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="blog-hero">
+    <div class="container">
+      <h1>Dijital Dünyadan <span class="gradient-text">Yazılar</span></h1>
+      <p>Web tasarım, SEO ve dijital pazarlama hakkında içerikler. Her hafta yeni yazı.</p>
+    </div>
+  </div>
+
+  <main class="blog-main">
+    <div class="container">
+      <div class="blog-layout">
+
+        <!-- Yazılar -->
+        <div class="blog-post-list">
+
+          <article class="blog-post-item">
+            <div class="blog-post-item__img" style="background: linear-gradient(135deg, #2563eb, #7c3aed);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div class="blog-post-item__body">
+              <span class="blog-card__cat">SEO</span>
+              <h2><a href="web-siteniz-google-da-neden-gorunmuyor.html">Web Siteniz Google'da Neden Görünmüyor?</a></h2>
+              <p>Google'da üst sıralarda yer almak için dikkat etmeniz gereken 7 kritik faktörü anlattık. SEO'nun teknik ve içerik boyutlarına değindik.</p>
+              <div class="blog-post-item__meta">
+                <span>10 Nisan 2026</span>
+                <span>•</span>
+                <span>5 dk okuma</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-post-item">
+            <div class="blog-post-item__img" style="background: linear-gradient(135deg, #059669, #0891b2);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="blog-post-item__body">
+              <span class="blog-card__cat">Web Tasarım</span>
+              <h2><a href="iyi-web-sitesinin-ozellikleri.html">İyi Bir Web Sitesinin 10 Özelliği</a></h2>
+              <p>Ziyaretçileri müşteriye dönüştüren başarılı web sitelerinin ortak özellikleri nelerdir? Detaylı inceleme.</p>
+              <div class="blog-post-item__meta">
+                <span>5 Nisan 2026</span>
+                <span>•</span>
+                <span>7 dk okuma</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-post-item">
+            <div class="blog-post-item__img" style="background: linear-gradient(135deg, #dc2626, #d97706);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            </div>
+            <div class="blog-post-item__body">
+              <span class="blog-card__cat">E-Ticaret</span>
+              <h2><a href="eticaret-sitesi-acmak-icin-bilmeniz-gerekenler.html">E-Ticaret Sitesi Açmak İçin Bilmeniz Gerekenler</a></h2>
+              <p>Kendi online mağazanızı kurmadan önce göz önünde bulundurmanız gereken tüm adımlar ve dikkat edilecek noktalar.</p>
+              <div class="blog-post-item__meta">
+                <span>1 Nisan 2026</span>
+                <span>•</span>
+                <span>8 dk okuma</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-post-item">
+            <div class="blog-post-item__img" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40"><rect x="5" y="2" width="14" height="20" rx="2"/></svg>
+            </div>
+            <div class="blog-post-item__body">
+              <span class="blog-card__cat" style="background:#ede9fe;color:#7c3aed">Mobil</span>
+              <h2><a href="#">Mobil Uyumlu Site Neden Bu Kadar Önemli?</a></h2>
+              <p>Türkiye'de internet trafiğinin %70'i mobil cihazlardan geliyor. Siteniz hazır mı?</p>
+              <div class="blog-post-item__meta">
+                <span>25 Mart 2026</span>
+                <span>•</span>
+                <span>4 dk okuma</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-post-item">
+            <div class="blog-post-item__img" style="background: linear-gradient(135deg, #0891b2, #2563eb);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="blog-post-item__body">
+              <span class="blog-card__cat" style="background:#d1fae5;color:#065f46">İpuçları</span>
+              <h2><a href="#">Web Sitenizi Hızlandırmak İçin 5 Adım</a></h2>
+              <p>Yavaş açılan siteler hem ziyaretçi kaybettirir hem de Google sıralamalarını olumsuz etkiler. Çözüm burada.</p>
+              <div class="blog-post-item__meta">
+                <span>18 Mart 2026</span>
+                <span>•</span>
+                <span>6 dk okuma</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+          <div class="sidebar-widget">
+            <h3>Kategoriler</h3>
+            <ul class="sidebar-cats">
+              <li><a href="#">SEO <span>4</span></a></li>
+              <li><a href="#">Web Tasarım <span>6</span></a></li>
+              <li><a href="#">E-Ticaret <span>3</span></a></li>
+              <li><a href="#">Mobil <span>2</span></a></li>
+              <li><a href="#">İpuçları <span>5</span></a></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>Son Yazılar</h3>
+            <div class="sidebar-recent">
+              <div class="sidebar-recent-item">
+                <div class="sidebar-recent-img" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18"><circle cx="11" cy="11" r="8"/></svg>
+                </div>
+                <div>
+                  <h4><a href="web-siteniz-google-da-neden-gorunmuyor.html">Web Siteniz Neden Görünmüyor?</a></h4>
+                  <span>10 Nisan 2026</span>
+                </div>
+              </div>
+              <div class="sidebar-recent-item">
+                <div class="sidebar-recent-img" style="background:linear-gradient(135deg,#059669,#0891b2)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                </div>
+                <div>
+                  <h4><a href="iyi-web-sitesinin-ozellikleri.html">İyi Web Sitesinin 10 Özelliği</a></h4>
+                  <span>5 Nisan 2026</span>
+                </div>
+              </div>
+              <div class="sidebar-recent-item">
+                <div class="sidebar-recent-img" style="background:linear-gradient(135deg,#dc2626,#d97706)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/></svg>
+                </div>
+                <div>
+                  <h4><a href="eticaret-sitesi-acmak-icin-bilmeniz-gerekenler.html">E-Ticaret Sitesi Açmak</a></h4>
+                  <span>1 Nisan 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>Bülten</h3>
+            <p style="font-size:.88rem;color:var(--text-light);margin-bottom:14px">Her hafta yeni içerik, ipuçları ve fırsatlar için abone olun.</p>
+            <div class="sidebar-newsletter">
+              <input type="email" placeholder="E-posta adresiniz" />
+              <a href="mailto:egomak2025@gmail.com" class="btn btn--primary">Abone Ol</a>
+            </div>
+          </div>
+
+          <div class="sidebar-widget" style="background:linear-gradient(135deg,var(--primary),#7c3aed);border:none">
+            <h3 style="color:#fff;border-bottom-color:rgba(255,255,255,.3)">Ücretsiz Teklif</h3>
+            <p style="font-size:.88rem;color:rgba(255,255,255,.8);margin-bottom:16px">Projeniz için ücretsiz fiyat teklifi alın.</p>
+            <a href="/#iletisim" class="btn btn--outline-light" style="justify-content:center;width:100%">Teklif Al</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="/" class="nav__logo" style="color:#fff">
+            <span class="logo-icon">E</span>
+            <span>Egomak <strong>Dijital</strong></span>
+          </a>
+          <p>Markanızı dijitalde en iyi şekilde temsil etmek için buradayız.</p>
+        </div>
+        <div class="footer__links">
+          <h4>Hızlı Erişim</h4>
+          <ul>
+            <li><a href="/#hizmetler">Hizmetler</a></li>
+            <li><a href="/#portfolyo">Portfolyo</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/#iletisim">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Hizmetler</h4>
+          <ul>
+            <li><a href="/#hizmetler">Kurumsal Web Sitesi</a></li>
+            <li><a href="/#hizmetler">E-Ticaret Sitesi</a></li>
+            <li><a href="/#hizmetler">SEO Optimizasyonu</a></li>
+            <li><a href="/#hizmetler">Mobil Uygulama</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h4>İletişim</h4>
+          <a href="tel:+905347990706">+90 534 799 07 06</a>
+          <a href="mailto:egomak2025@gmail.com">egomak2025@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Egomak Dijital. Tüm hakları saklıdır.</p>
+        <p>Web Tasarım & Dijital Çözümler</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
