@@ -677,6 +677,12 @@
             </div>
             <input type="hidden" name="_subject" value="Egomak Dijital - Yeni Proje Talebi" />
             <input type="hidden" name="_replyto" id="replyto" value="" />
+            <div class="form-group form-group--consent">
+              <label class="consent-label">
+                <input type="checkbox" id="kvkkConsent" name="kvkk_consent" required />
+                <span>Kişisel verilerimin işlenmesine ilişkin <a href="/aydinlatma-metni" target="_blank" rel="noopener noreferrer">Aydınlatma Metni</a>'ni okudum ve kabul ediyorum.</span>
+              </label>
+            </div>
             <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Mesaj Gönder</button>
             <p class="form__note" id="formNote">Genellikle 24 saat içinde geri dönüş yapıyoruz.</p>
             <p class="form__success" id="formSuccess" style="display:none;color:#86efac;text-align:center;font-weight:600;margin-top:12px">✓ Mesajınız iletildi! En kısa sürede dönüş yapacağız.</p>
@@ -716,6 +722,13 @@
             <li><a href="#hizmetler">İşletme Otomasyonları</a></li>
           </ul>
         </div>
+        <div class="footer__links">
+          <h4>Yasal</h4>
+          <ul>
+            <li><a href="/gizlilik-politikasi">Gizlilik Politikası</a></li>
+            <li><a href="/aydinlatma-metni">Aydınlatma Metni</a></li>
+          </ul>
+        </div>
         <div class="footer__contact">
           <h4>İletişim</h4>
           <a href="tel:+905347990706">+90 534 799 07 06</a>
@@ -735,10 +748,25 @@
 
       <div class="footer__bottom">
         <p>&copy; 2026 Egomak Dijital. Tüm hakları saklıdır.</p>
-        <p>Web Tasarım & Dijital Çözümler</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+          <span style="color:#334155;font-size:.85rem">Web Tasarım & Dijital Çözümler</span>
+          <a href="/gizlilik-politikasi" style="color:#475569;font-size:.85rem;text-decoration:none;transition:.2s" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#475569'">Gizlilik Politikası</a>
+          <a href="/aydinlatma-metni" style="color:#475569;font-size:.85rem;text-decoration:none;transition:.2s" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#475569'">Aydınlatma Metni</a>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- Çerez Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__text">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="flex-shrink:0;color:#94a3b8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span>Bu web sitesi, deneyiminizi geliştirmek için çerezler kullanır. <a href="/gizlilik-politikasi">Daha fazla bilgi</a></span>
+      </div>
+      <button class="cookie-banner__btn" id="cookieAccept">Kabul Et</button>
+    </div>
+  </div>
 
   <!-- Floating WhatsApp Butonu -->
   <a href="https://wa.me/905347990706?text=Merhaba%2C%20web%20sitesi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp ile yaz">

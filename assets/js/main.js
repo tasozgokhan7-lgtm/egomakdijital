@@ -68,6 +68,21 @@ const observer = new IntersectionObserver(entries => {
 
 fadeEls.forEach(el => observer.observe(el));
 
+// Cookie Banner
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+if (cookieBanner) {
+  if (!localStorage.getItem('egomak_cookie_consent')) {
+    setTimeout(() => cookieBanner.classList.add('visible'), 1200);
+  }
+  if (cookieAccept) {
+    cookieAccept.addEventListener('click', () => {
+      localStorage.setItem('egomak_cookie_consent', '1');
+      cookieBanner.classList.remove('visible');
+    });
+  }
+}
+
 // Contact form — Formspree
 const form = document.getElementById('contactForm');
 if (form) {
@@ -84,8 +99,14 @@ if (form) {
     const email   = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
 
+    const kvkk = document.getElementById('kvkkConsent');
     if (!name || !email || !message) {
       alert('Lütfen ad soyad, e-posta ve mesaj alanlarını doldurun.');
+      return;
+    }
+    if (kvkk && !kvkk.checked) {
+      alert('Devam etmek için Aydınlatma Metni\'ni kabul etmeniz gerekmektedir.');
+      kvkk.focus();
       return;
     }
 
