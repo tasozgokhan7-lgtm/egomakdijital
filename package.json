@@ -1,0 +1,29 @@
+{
+  "name": "egomakdijital",
+  "version": "1.0.0",
+  "description": "Egomak Dijital - Professional web design and digital solutions",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tasozgokhan7-lgtm/egomakdijital.git"
+  },
+  "keywords": [
+    "web-design",
+    "digital-agency",
+    "istanbul",
+    "beylikduzu",
+    "egomak"
+  ],
+  "author": "Egomak Dijital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tasozgokhan7-lgtm/egomakdijital/issues"
+  },
+  "homepage": "https://www.egomakdijital.com",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
